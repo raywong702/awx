@@ -1,0 +1,19 @@
+#!/usr/bin/env ansible-playbook
+---
+- hosts: localhost
+  become: yes
+
+  vars:
+    nodejs_version: "6.x"
+    pip_install_packages:
+      - name: docker-py
+
+  roles:
+    - { role: geerlingguy.repo-epel, when: ansible_os_family == 'RedHat' }
+    - geerlingguy.git
+    - geerlingguy.ansible
+    - geerlingguy.docker
+    - geerlingguy.pip
+    - geerlingguy.nodejs
+    - geerlingguy.awx
+...
